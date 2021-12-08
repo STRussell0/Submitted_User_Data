@@ -33,8 +33,6 @@ function show_authors() {
     );
     add_user_meta($_REQUEST['user'], "clicks", $user_meta);
     $result = $user_meta;
-
-
     
     
     if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') { // what exactly happens when this the button is pressed
