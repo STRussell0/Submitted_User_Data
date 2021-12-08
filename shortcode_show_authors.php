@@ -25,25 +25,34 @@ function show_authors() {
     $submitted = ($user_meta == '') ? 0 : count($user_meta);
     date_default_timezone_set("America/Los_Angeles");
 
-    if ( $submitted == 0 ) {
-        $user_meta_array = array (
-            'click_count' => 1,
-            'date' => date("h:i:sa"),
-            'page_title' => $_REQUEST['post_title']
-        );
-        update_user_meta($_REQUEST['user'], "clicks", $user_meta_array);
-        $result = $user_meta_array;
+    // if ( $submitted == 0 ) {
+    //     $user_meta_array = array (
+    //         'click_count' => 1,
+    //         'date' => date("h:i:sa"),
+    //         'page_title' => $_REQUEST['post_title']
+    //     );
+    //     update_user_meta($_REQUEST['user'], "clicks", $user_meta_array);
+    //     $result = $user_meta_array;
 
-    } elseif ( $submitted > 0 ) {
-        $click_number = $submitted + 1;
-        $user_meta = array (
-            'click_count' => $click_number,
-            'date' => date("h:i:sa"),
-            'page_title' => $_REQUEST['post_title']
-        );
-        add_user_meta($_REQUEST['user'], "clicks", $user_meta);
-        $result = $user_meta;
-    }
+    // } elseif ( $submitted > 0 ) {
+    //     $click_number = $submitted + 1;
+    //     $user_meta = array (
+    //         'click_count' => $click_number,
+    //         'date' => date("h:i:sa"),
+    //         'page_title' => $_REQUEST['post_title']
+    //     );
+    //     add_user_meta($_REQUEST['user'], "clicks", $user_meta);
+    //     $result = $user_meta;
+    // }
+
+    $click_number = $submitted + 1;
+    $user_meta = array (
+        'click_count' => $click_number,
+        'date' => date("h:i:sa"),
+        'page_title' => $_REQUEST['post_title']
+    );
+    add_user_meta($_REQUEST['user'], "clicks", $user_meta);
+    $result = $user_meta;
 
 
     
