@@ -22,7 +22,6 @@ jQuery(document).ready( function() {
              This click was at ${response['date']}.
              You are currently on the ${response['page_title']} page. `
             list.appendChild(item)
-            //  jQuery('#linkbutton').hide();
           }
  
     })
