@@ -17,30 +17,30 @@
 
 function show_authors() {
 
-    if(!wp_verify_nonce($_REQUEST['nonce'], "show_authors_nonce")) {
-        exit( "No naughty business please :)");
+    if( !wp_verify_nonce( $_REQUEST['nonce'], "show_authors_nonce" ) ) {
+        exit( "No naughty business please :)" );
     }
 
-    $user_meta = get_user_meta($_REQUEST['user'], "clicks");
-    $submitted = ($user_meta == '') ? 0 : count($user_meta);
-    date_default_timezone_set("America/Los_Angeles");
+    $user_meta = get_user_meta( $_REQUEST['user'], "clicks" );
+    $submitted = ( $user_meta == '' ) ? 0 : count( $user_meta );
+    date_default_timezone_set( "America/Los_Angeles" );
 
     $click_number = $submitted + 1; 
     $user_meta = array (
         'click_count' => $click_number,
-        'date' => date("h:i:sa"),
+        'date' => date( "h:i:sa" ),
         'page_title' => $_REQUEST['post_title']
     );
-    add_user_meta($_REQUEST['user'], "clicks", $user_meta);
+    add_user_meta( $_REQUEST['user'], "clicks", $user_meta );
     $result = $user_meta;
     
     
-    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+    if( !empty( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && strtolower( $_SERVER['HTTP_X_REQUESTED_WITH'] ) == 'xmlhttprequest' ) {
         $result = json_encode($result);
         echo $result;
      }
      else {
-        header("Location: ".$_SERVER["HTTP_REFERER"]);
+        header( "Location: ".$_SERVER["HTTP_REFERER"] );
      }
   
      die();
@@ -53,7 +53,7 @@ function my_must_login() {
     die();
  }
 
- add_action("wp_ajax_nopriv_show_authors", "my_must_login");
+ add_action( "wp_ajax_nopriv_show_authors", "my_must_login" );
 
 
 function my_script_enqueuer() {
@@ -69,7 +69,7 @@ function my_script_enqueuer() {
 
 
 function display() {
-    $nonce = wp_create_nonce("show_authors_nonce");
+    $nonce = wp_create_nonce( "show_authors_nonce" );
     ?>
         <button 
             id="linkbutton"
@@ -87,6 +87,6 @@ function display() {
     <?php
 }
 
- add_shortcode('shortcode_show_authors', 'display');
+ add_shortcode( 'shortcode_show_authors', 'display' );
 
 
