@@ -25,7 +25,7 @@ function show_authors() {
     $submitted = ($user_meta == '') ? 0 : count($user_meta);
     date_default_timezone_set("America/Los_Angeles");
 
-    $click_number = $submitted + 1;
+    $click_number = $submitted + 1; 
     $user_meta = array (
         'click_count' => $click_number,
         'date' => date("h:i:sa"),
@@ -35,7 +35,7 @@ function show_authors() {
     $result = $user_meta;
     
     
-    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') { // what exactly happens when this the button is pressed
+    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
         $result = json_encode($result);
         echo $result;
      }
